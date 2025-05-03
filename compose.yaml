@@ -1,0 +1,43 @@
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 3000:5173
+    volumes:
+      - ./frontend:/frontend_docker
+    depends_on:
+      - backend
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - 4000:5000
+    volumes:
+      - ./backend:/backend_docker
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - postgres-db-network
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - 5050:80
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    networks:
+      - postgres-db-network
+
+networks:
+  postgres-db-network:
+    driver: bridge
