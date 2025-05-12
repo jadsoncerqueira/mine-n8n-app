@@ -1,6 +1,6 @@
-import productTypes from "./product.schema.js";
+import userTypes from "./user.schema.js";
 
 const typesGraphql = {
-  productTypes,
+  userTypes,
 };
 export default typesGraphql;

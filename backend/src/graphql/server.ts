@@ -13,7 +13,7 @@ startStandaloneServer(server, {
   context: async ({ req }) => ({
     token: req.headers.authorization,
     dataSources: {
-      productApi: new ProductController(),
+      userApi: new ProductController(),
     },
   }),
 }).then(({ url }) => {

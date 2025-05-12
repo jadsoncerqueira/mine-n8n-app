@@ -4,6 +4,6 @@ export default interface IMyContext {
   token?: string;
   dataSources: {
     user?: boolean;
-    productApi: ProductController;
+    userApi: ProductController;
   };
 }

@@ -1,26 +1,26 @@
-import { IProduct } from "../interface/product.interface.js";
-import ProductService from "../service/product.service.js";
+import IUser from "../interface/user.interface.js";
+import UserService from "../service/user.service.js";
 
 export default class ProductController {
-  productService: ProductService;
+  userService: UserService;
 
   constructor() {
-    this.productService = new ProductService();
+    this.userService = new UserService();
   }
 
-  async getProducts(): Promise<IProduct[]> {
-    return await this.productService.getProducts();
+  async getUsers(): Promise<IUser[]> {
+    return await this.userService.getUsers();
   }
 
-  async getProductById(id: string): Promise<IProduct> {
-    return await this.productService.getProductById(id);
+  async getUserById(id: string): Promise<IUser> {
+    return await this.userService.getUserById(id);
   }
 
-  createProduct(product: IProduct) {
-    return this.productService.createProduct(product);
+  createUser(product: IUser) {
+    return this.userService.createUser(product);
   }
 
-  updateProduct(id: number, product: IProduct) {
-    return this.productService.updateProduct(id, product);
+  updateUser(id: number, product: IUser) {
+    return this.userService.updateUser(id, product);
   }
 }

@@ -1,7 +1,7 @@
-import { productResolver } from "./product.resolver.js";
+import { userResolver } from "./user.resolver.js";
 
 const resolversGraphql = {
-  productResolver,
+  userResolver,
 };
 
 export default resolversGraphql;
