@@ -1,0 +1,26 @@
+import I{{pascalCase name}} from "../interface/{{name}}.interface.js";
+import {{pascalCase name}}Service from "../service/{{name}}.service.js";
+
+export default class {{pascalCase name}}Controller {
+  {{name}}Service: {{pascalCase name}}Service;
+
+  constructor() {
+    this.{{name}}Service = new {{pascalCase name}}Service();
+  }
+
+  async get{{pascalCase name}}s(): Promise<I{{pascalCase name}}[]> {
+    return await this.{{name}}Service.get{{pascalCase name}}s();
+  }
+
+  async get{{pascalCase name}}ById(id: string): Promise<I{{pascalCase name}}> {
+    return await this.{{name}}Service.get{{pascalCase name}}ById(id);
+  }
+
+  create{{pascalCase name}}({{name}}: I{{pascalCase name}}) {
+    return this.{{name}}Service.create{{pascalCase name}}({{name}});
+  }
+
+  update{{pascalCase name}}(id: number, {{name}}: I{{pascalCase name}}) {
+    return this.{{name}}Service.update{{pascalCase name}}(id, {{name}});
+  }
+}

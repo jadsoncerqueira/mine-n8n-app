@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs, resolvers } from "./index.js";
 import IMyContext from "../interface/mycontext.interface.js";
-import ProductController from "../controller/product.controller.js";
+import ProductController from "../controller/user.controller.js";
 
 const port = 4000;
 

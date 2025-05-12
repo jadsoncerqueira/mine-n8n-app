@@ -1,4 +1,4 @@
-import ProductController from "../controller/product.controller.js";
+import ProductController from "../controller/user.controller.js";
 
 export default interface IMyContext {
   token?: string;

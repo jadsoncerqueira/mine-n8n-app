@@ -1,0 +1,26 @@
+import I{{pascalCase name}} from "../interface/{{name}}.interface.js";
+import {{pascalCase name}}Model from "../model/{{name}}.model.js";
+
+export default class {{pascalCase name}}Service {
+  private {{name}}Model: {{pascalCase name}}Model;
+
+  constructor() {
+    this.{{name}}Model = new {{pascalCase name}}Model();
+  }
+
+  async get{{pascalCase name}}s(): Promise<I{{pascalCase name}}[]> {
+    return await this.{{name}}Model.get{{pascalCase name}}s();
+  }
+
+  get{{pascalCase name}}ById(id: string): Promise<I{{pascalCase name}}> {
+    return this.{{name}}Model.get{{pascalCase name}}ById(id);
+  }
+
+  create{{pascalCase name}}({{name}}: I{{pascalCase name}}) {
+    return this.{{name}}Model.create{{pascalCase name}}({{name}});
+  }
+
+  update{{pascalCase name}}(id: number, {{name}}: I{{pascalCase name}}) {
+    return this.{{name}}Model.update{{pascalCase name}}(id, {{name}});
+  }
+}

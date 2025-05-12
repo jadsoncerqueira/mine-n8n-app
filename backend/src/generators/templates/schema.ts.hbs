@@ -1,0 +1,18 @@
+const {{name}}Types = `#graphql
+  scalar Date
+  type {{pascalCase name}} {
+
+  }
+
+  type Query {
+    {{name}}s: [{{pascalCase name}}]
+    {{name}}(id: String!): {{pascalCase name}}
+  }
+
+  type Mutation {
+    create{{pascalCase name}}(): {{pascalCase name}}
+    update{{pascalCase name}}(id: ID!): {{pascalCase name}}
+  }
+`;
+
+export default {{name}}Types;

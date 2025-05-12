@@ -1,0 +1,28 @@
+import { SQLDataSource } from "datasource-sql";
+import knexConfig from "./config_db.js";
+import I{{pascalCase name}} from "../interface/{{name}}.interface.js";
+
+export default class {{pascalCase name}}Model extends SQLDataSource {
+  constructor() {
+    super(knexConfig);
+  }
+  async get{{pascalCase name}}s(): Promise<I{{pascalCase name}}[]> {
+    return await this.knex.select("*").from("{{name}}s");
+  }
+
+  async get{{pascalCase name}}ById(id: string): Promise<I{{pascalCase name}}> {
+    return await this.knex("{{name}}s").where({ id }).first();
+  }
+
+  update{{pascalCase name}}(id: number, {{name}}: I{{pascalCase name}}) {
+    return this.knex("{{name}}s")
+      .where({ id })
+      .update({{name}})
+      .returning("*")
+      .then((rows: I{{pascalCase name}}[]) => rows[0]);
+  }
+
+  create{{pascalCase name}}({ }: I{{pascalCase name}}) {
+    return this.knex("{{name}}s").insert({ }).returning("*");
+  }
+}

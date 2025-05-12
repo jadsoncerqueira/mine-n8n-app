@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
     "start": "npm run compile && node ./dist/graphql/server.js",
-    "dev": "tsx watch ./src/graphql/server.ts"
+    "dev": "tsx watch ./src/graphql/server.ts",
+    "generate:route": "plop --plopfile ./src/generators/plopfile.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@types/node": "^22.15.3",
     "nodemon": "^3.1.10",
+    "plop": "^4.0.1",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },

@@ -1,0 +1,23 @@
+import IMyContext from "../../interface/mycontext.interface.js";
+import I{{pascalCase name}} from "../../interface/{{name}}.interface.js";
+import { DateScalar } from "./dateScalar.resolver.js";
+
+export const {{name}}Resolver = {
+  Query: {
+    {{name}}s: async (
+      _: any,
+      __: any,
+      { dataSources }: IMyContext
+    ): Promise<I{{pascalCase name}}[]> => {
+      return dataSources.{{name}}Api.get{{pascalCase name}}s();
+    },
+    {{name}}: async (
+      _: any,
+      { id }: { id: string },
+      { dataSources }: IMyContext
+    ): Promise<I{{pascalCase name}}> => {
+      return dataSources.{{name}}Api.get{{pascalCase name}}ById(id);
+    },
+  },
+  Date: DateScalar,
+};
