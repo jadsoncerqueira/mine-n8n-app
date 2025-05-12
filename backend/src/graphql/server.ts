@@ -3,6 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs, resolvers } from "./index.js";
 import IMyContext from "../interface/mycontext.interface.js";
 import ProductController from "../controller/user.controller.js";
+import WorkflowController from "../controller/workflow.controller.js";
 
 const port = 4000;
 
@@ -14,6 +15,7 @@ startStandaloneServer(server, {
     token: req.headers.authorization,
     dataSources: {
       userApi: new ProductController(),
+      workflowApi: new WorkflowController()
     },
   }),
 }).then(({ url }) => {

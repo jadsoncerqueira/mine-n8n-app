@@ -1,7 +1,12 @@
 const workflowTypes = `#graphql
   scalar Date
   type Workflow {
-
+    id: String!
+    user_id: String!
+    name: String!
+    description: String
+    created_at: Date!
+    updated_at: Date!
   }
 
   type Query {
@@ -10,8 +15,8 @@ const workflowTypes = `#graphql
   }
 
   type Mutation {
-    createWorkflow(): Workflow
-    updateWorkflow(id: ID!): Workflow
+    createWorkflow( user_id: String!, name: String!, description: String): Workflow
+    updateWorkflow(id: ID!, user_id: String!, name: String!, description: String): Workflow
   }
 `;
 
