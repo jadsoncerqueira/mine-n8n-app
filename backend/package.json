@@ -15,6 +15,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.15.3",
     "nodemon": "^3.1.10",
     "plop": "^4.0.1",
@@ -28,6 +29,7 @@
     "datasource-sql": "^2.1.0",
     "dotenv": "^16.5.0",
     "graphql": "^16.11.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.15.6"
   }
 }

@@ -14,6 +14,10 @@ export default class ProductModel extends SQLDataSource {
     return await this.knex("users").where({ id }).first();
   }
 
+  async getUserByEmail(email: string): Promise<IUser> {
+    return await this.knex("users").where({ email }).first();
+  }
+
   updateUser(id: number, product: IUser) {
     return this.knex("users")
       .where({ id })
@@ -22,7 +26,7 @@ export default class ProductModel extends SQLDataSource {
       .then((rows: IUser[]) => rows[0]);
   }
 
-  createUser({ name, email, picture }: IUser) {
-    return this.knex("users").insert({ name, email, picture }).returning("*");
+  createUser({ name, email, picture, googgle_id }: IUser) {
+    return this.knex("users").insert({ name, email, picture, googgle_id }).returning("*");
   }
 }

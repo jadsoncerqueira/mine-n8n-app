@@ -16,6 +16,14 @@ export default class ProductService {
     return this.productModel.getUserById(id);
   }
 
+  async login(user: IUser)  {
+    const searchUser = await this.productModel.getUserByEmail(user.email);
+
+    if(!searchUser) {
+      await this.productModel.createUser(user)
+    }
+  }
+
   createUser(product: IUser) {
     return this.productModel.createUser(product);
   }
