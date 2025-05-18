@@ -1,14 +1,17 @@
+import { JwtPayload } from "jsonwebtoken";
+
 export default interface IUser {
   id?: string;
   email: string;
   name: string;
   picture: string;
-  googgle_id: string;
-  created_at: Date;
+  google_id?: string;
+  created_at?: Date;
 }
 
-export interface IPayload {
+export interface IPayload extends JwtPayload {
+  email: string;
   name: string;
   picture: string;
-  email: string;
+  google_id?: string;
 }

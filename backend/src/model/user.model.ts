@@ -26,7 +26,8 @@ export default class ProductModel extends SQLDataSource {
       .then((rows: IUser[]) => rows[0]);
   }
 
-  createUser({ name, email, picture, googgle_id }: IUser) {
-    return this.knex("users").insert({ name, email, picture, googgle_id }).returning("*");
+  async createUser({ name, email, picture, google_id }: IUser): Promise<IUser> {
+    const [user] = await this.knex("users").insert({ name, email, picture, google_id }).returning("*");
+    return user;
   }
 }

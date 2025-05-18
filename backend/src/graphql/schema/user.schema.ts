@@ -5,13 +5,14 @@ const userTypes = `#graphql
     email: String!
     name: String!
     picture: String!
-    googgle_id: String
+    google_id: String
     created_at: Date
   }
 
   type Query {
     users: [User]
     user(id: String!): User
+    token(token: String!): String
   }
 
   type Mutation {

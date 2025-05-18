@@ -10,7 +10,7 @@ export const userResolver = {
       __: any,
       { dataSources }: IMyContext
     ): Promise<IUser[]> => {
-      ErrorAuth(!dataSources.userPayload)
+      ErrorAuth(dataSources.userPayload)
       return dataSources.userApi.getUsers();
     },
     user: async (
@@ -18,8 +18,15 @@ export const userResolver = {
       { id }: { id: string },
       { dataSources }: IMyContext
     ): Promise<IUser> => {
-      ErrorAuth(!dataSources.userPayload)
+      ErrorAuth(dataSources.userPayload)
       return dataSources.userApi.getUserById(id);
+    },
+    token: async (
+      _: any,
+      { token }: { token: string },
+      { dataSources }: IMyContext
+    ): Promise<String> => {
+      return await dataSources.userApi.login(token);
     },
   },
   Date: DateScalar,

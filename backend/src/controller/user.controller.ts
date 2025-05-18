@@ -8,8 +8,8 @@ export default class UserController {
     this.userService = new UserService();
   }
 
-  async login(user: IUser) {
-    return this.userService.login(user);
+  async login(token: string): Promise<string> {
+    return await this.userService.login(token);
   }
 
   async getUsers(): Promise<IUser[]> {
