@@ -12,8 +12,9 @@ export function createToken(payload: IPayload): string {
 
   return jwt.sign(payload, JWT_SECRET, options);
 }
-export function verifyToken(token: string): IPayload {
+export function verifyToken(token: string | null | undefined): IPayload | null {
   try {
+    if(!token) return null;
     const decoded = jwt.verify(token, JWT_SECRET) as IPayload;
 
     // Verifica expiração manualmente (opcional, pois jwt.verify já faz isso)
@@ -23,6 +24,6 @@ export function verifyToken(token: string): IPayload {
 
     return decoded;
   } catch (error) {
-    throw new Error(`Token inválido ou expirado: ${(error as Error).message}`);
+    return null;
   }
 }

@@ -1,4 +1,4 @@
-import IUser from "../interface/user.interface.js";
+import IUser, { IPayload } from "../interface/user.interface.js";
 import UserService from "../service/user.service.js";
 
 export default class UserController {
@@ -8,7 +8,7 @@ export default class UserController {
     this.userService = new UserService();
   }
 
-  async login(token: string): Promise<string> {
+  async login(token: string): Promise<{newToken: string, user: IUser }> {
     return await this.userService.login(token);
   }
 

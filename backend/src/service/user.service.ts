@@ -1,6 +1,6 @@
-import IUser from "../interface/user.interface.js";
+import IUser, { IPayload } from "../interface/user.interface.js";
 import ProductModel from "../model/user.model.js";
-import { verifyToken } from "../utils/authGoogle.js";
+import { verifyTokenGooge } from "../utils/authGoogle.js";
 import { createToken } from "../utils/authJwt.js";
 import ErrorAuth from "../utils/errorAuth.js";
 
@@ -19,21 +19,25 @@ export default class ProductService {
     return this.productModel.getUserById(id);
   }
 
-  async login(token: string): Promise<string > {
+  async login(token: string): Promise<{newToken: string, user: IUser }> {
     let newToken = "";
-    const user = await verifyToken(token);
+    const user = await verifyTokenGooge(token);
+    let userTransformer = user as unknown as IUser
     ErrorAuth(user);
     if(user) {
       const searchUser = await this.productModel.getUserByEmail(user.email);
       if(!searchUser) {
-        const {email, name, picture, google_id} = await this.productModel.createUser(user);
+        const userCreated = await this.productModel.createUser(user);
+        const {email, name, picture, google_id} = userCreated
+        userTransformer = userCreated
         newToken = createToken({email, name, picture, google_id})
       } else {
+        userTransformer = searchUser;
         newToken = createToken(user)
       }
       
     }
-    return newToken;
+    return {newToken, user: userTransformer};
   }
 
   createUser(product: IUser) {

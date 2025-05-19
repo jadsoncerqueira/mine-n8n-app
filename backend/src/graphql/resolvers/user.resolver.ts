@@ -1,5 +1,6 @@
+import { IncomingMessage, ServerResponse } from "http";
 import IMyContext from "../../interface/mycontext.interface.js";
-import IUser from "../../interface/user.interface.js";
+import IUser, { IPayload } from "../../interface/user.interface.js";
 import ErrorAuth from "../../utils/errorAuth.js";
 import { DateScalar } from "./dateScalar.resolver.js";
 
@@ -23,10 +24,23 @@ export const userResolver = {
     },
     token: async (
       _: any,
-      { token }: { token: string },
+      { token }: { token: string},
       { dataSources }: IMyContext
-    ): Promise<String> => {
-      return await dataSources.userApi.login(token);
+    ): Promise<IUser> => {
+      const {newToken, user} = await dataSources.userApi.login(token);
+      dataSources.response.setHeader('Set-Cookie', `token=${newToken}; HttpOnly; Path=/; Max-Age=86400; SameSite=Strict`);
+      return user;
+    },
+    logout: async (
+      _: any,
+      { token}: { token: string},
+      { dataSources }: IMyContext
+    ): Promise<string> => {
+       dataSources.response.setHeader(
+        'Set-Cookie',
+        'token=; HttpOnly; Path=/; Max-Age=0; SameSite=Strict'
+      );
+      return "ok"
     },
   },
   Date: DateScalar,

@@ -12,7 +12,8 @@ const userTypes = `#graphql
   type Query {
     users: [User]
     user(id: String!): User
-    token(token: String!): String
+    token(token: String!): User
+    logout: String
   }
 
   type Mutation {

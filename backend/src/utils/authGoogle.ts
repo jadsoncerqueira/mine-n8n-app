@@ -19,7 +19,8 @@ function getKey(header: JwtHeader, callback: SigningKeyCallback) {
 }
 
 // Verificar e decodificar token do Google
-export async function verifyToken(token: string): Promise<IPayload | null> {
+export async function verifyTokenGooge(token: string | null | undefined): Promise<IPayload | null> {
+  if(!token) return null;
   return new Promise((resolve, reject) => {
     jwt.verify(
       token,
@@ -30,6 +31,8 @@ export async function verifyToken(token: string): Promise<IPayload | null> {
       },
       (err, decoded) => {
         if (err) {
+          console.log(token)
+          console.error(err)
           resolve(null);
         } else {
           console.log(decoded)
