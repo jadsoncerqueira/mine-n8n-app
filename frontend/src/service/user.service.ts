@@ -15,6 +15,7 @@ export const LOGIN_USER = gql`
         token(token: $token) {
             name
             picture
+            email
         }
     }
 `

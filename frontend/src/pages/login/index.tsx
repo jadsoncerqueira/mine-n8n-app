@@ -25,7 +25,7 @@ function Login() {
                 const payload = JSON.stringify(data.token);
                 localStorage.setItem("Payload", payload)
                 console.log(credential, data);
-                navigate('/home');
+                navigate('/editor');
               }
             } catch (error) {
               console.error('Erro ao fazer login:', error);
